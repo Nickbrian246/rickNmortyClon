@@ -10,7 +10,8 @@ const NavBarMainPage = () => {
             height:"fit-content",
             display:"flex",
             justifyContent:"space-around",
-            borderBottom:"1px solid black"
+            borderBottom:"1px solid black",
+            position:'sticky'
             }}>
 
             <picture>

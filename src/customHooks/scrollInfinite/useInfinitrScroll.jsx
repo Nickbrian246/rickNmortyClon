@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react'
 
@@ -16,21 +16,21 @@ export default function useInfiniteScroll(page) {
   useEffect(()=> {
     setIsLoading(true);
     setisError(false);
-   try {
+  try {
     fetch(`${BASEURL}/character/?page=${page}`)
     .then( result => result.json())
     .then(result=> {
       // setCharacter(result.results)
       setCharacter(prevResults =>{
-        return [... new Set([...prevResults, result.results])]
+        return [...new Set([...prevResults, result.results])]
       })
       setHasMore(result.results > 0)
       setIsLoading(false)
     })
     
-   } catch (error) {
-     setisError(true)
-   }
+  } catch (error) {
+    setisError(true)
+  }
   },[page])
 
   return{
