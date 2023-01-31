@@ -9,17 +9,18 @@ import Stack from '@mui/material/Stack';
 const IndexMainPage = () => {
     const [page, setPage] = useState(1);
     const [characterBybusqueda, setCharacterByBusqueda] = useState([]);
-    const[errorByGetCharacterBInputSearch, setErrorByGetCharacterBInputSearch] = useState(false);
+    const [errorByGetCharacterBInputSearch, setErrorByGetCharacterBInputSearch] = useState(false);
     const [isSearching, setIsSearching ] = useState(false);
-    const skeleton = Array(20).fill(""); // arreglo donde cada posicion tendra el valor de ""
-    console.log(characterBybusqueda,"soy la busqueda");
+    const observer = useRef();
     const {
         characters,
         isloading,
         isError,
         hasMore,        
-    } = useInfiniteScroll(page)
-    const observer = useRef()
+    } = useInfiniteScroll(page);
+
+    const skeleton = Array(20).fill(""); // arreglo donde cada posicion tendra el valor de ""
+
     const lastElementRef = useCallback(node => {
         if (isloading) return
         if (observer.current) observer.current.disconnect()
@@ -40,7 +41,8 @@ const IndexMainPage = () => {
 
     return (
         <>
-            <nav style={{ 
+            <nav 
+            style={{ 
             width: "100%",
             position:'sticky',
             top:'0px',
@@ -48,9 +50,12 @@ const IndexMainPage = () => {
                 <NavBarMainPage 
                 setCharacterByBusqueda={setCharacterByBusqueda}
                 setErrorByGetCharacterBInputSearch={setErrorByGetCharacterBInputSearch}
-                setIsSearching={setIsSearching}/>
+                setIsSearching={setIsSearching}
+                />
             </nav>
-            <div style={{
+
+            <div 
+            style={{
                 width: "100%",
                 display: "flex",
                 justifyContent: "center",
@@ -60,7 +65,8 @@ const IndexMainPage = () => {
                 gap: "8px",
 
             }}>
-                {(isSearching=== false) && (charactersArrayNoDuplicated.map((item, index) => {
+
+                {(isSearching=== false)&& (charactersArrayNoDuplicated.map((item, index) => {
                     if (charactersArrayNoDuplicated.length === index + 1) {
                         return <div ref={lastElementRef} key={item.id}>
                             <CardOfCharacters item={item} key={item.id} />
@@ -72,9 +78,12 @@ const IndexMainPage = () => {
                     }
                 }
                 ))}
-                {(errorByGetCharacterBInputSearch === false) && (characterBybusqueda.map((item) => {
+
+                {(errorByGetCharacterBInputSearch === false)
+                &&  (characterBybusqueda.map((item) => {
                     return <CardOfCharacters item={item} key={item.id} />
                 })) }
+
                 {(isloading) && (
                     <div style={{  display:"flex", flexWrap:"wrap", gap:"10px",justifyContent:"center"}}>
                         {skeleton.map((items) => {

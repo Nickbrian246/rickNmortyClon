@@ -4,13 +4,12 @@ import { Input, } from '@mui/material';
 import { useEffect } from "react";
 
 const NavBarMainPage = (props) => {
+    const [input,setInput] = useState("");
     const {
         setCharacterByBusqueda,
         setErrorByGetCharacterBInputSearch,
         setIsSearching,
     } = props;
-
-    const [input,setInput] = useState("");
     const BASEURL="https://rickandmortyapi.com/api";
 
     const handleInput = (event) => {
