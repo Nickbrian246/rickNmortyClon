@@ -53,7 +53,6 @@ const IndexMainPage = () => {
                 setIsSearching={setIsSearching}
                 />
             </nav>
-
             <div 
             style={{
                 width: "100%",
