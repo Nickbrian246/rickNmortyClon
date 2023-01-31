@@ -20,7 +20,8 @@ export default function useInfiniteScroll(page) {
     fetch(`${BASEURL}/character/?page=${page}`)
     .then( result => result.json())
     .then(result=> {
-      // setCharacter(result.results)
+      // setCharacter(result.results);
+      // console.log(result,"soy  el resultado");
       setCharacter(prevResults =>{
         return [...new Set([...prevResults, result.results])]
       })
@@ -29,7 +30,7 @@ export default function useInfiniteScroll(page) {
     })
     
   } catch (error) {
-    setisError(true)
+    setisError(true);
   }
   },[page])
 

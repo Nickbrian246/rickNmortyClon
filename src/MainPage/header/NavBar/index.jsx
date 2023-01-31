@@ -1,8 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import {BiAngry} from "react-icons/bi"
-import { Input } from '@mui/material';
+import { Input, } from '@mui/material';
+import { useEffect } from "react";
 
-const NavBarMainPage = () => {
+const NavBarMainPage = (props) => {
+    const {
+        setCharacterByBusqueda,
+        setErrorByGetCharacterBInputSearch,
+        setIsSearching,
+    } = props;
+
+    const [input,setInput] = useState("");
+    const BASEURL="https://rickandmortyapi.com/api";
+
+    const handleInput = (event) => {
+        setInput(event.target.value);
+    }
+    
+    useEffect(()=> {
+        if (input=="") return setIsSearching(false);  
+        setIsSearching(true);
+
+    fetch(`${BASEURL}/character/?name=${input}`)
+    .then( response => {
+        if (response.status!== 200) { return setErrorByGetCharacterBInputSearch(true)}
+        setErrorByGetCharacterBInputSearch(false);
+        return response.json()
+        })
+    .then(response => {
+        setCharacterByBusqueda(response.results);
+    });
+
+    },[input]);         
+
     return (
         <>
         <nav style={{
@@ -11,7 +41,7 @@ const NavBarMainPage = () => {
             display:"flex",
             justifyContent:"space-around",
             borderBottom:"1px solid black",
-            position:'sticky'
+            background:'white'
             }}>
 
             <picture>
@@ -33,7 +63,9 @@ const NavBarMainPage = () => {
             <div>
                 <Input
                 color="primary"
-                placeholder="search your character"/>
+                placeholder="search your character"
+                onChange={ handleInput}
+                />
             </div>
 
 
