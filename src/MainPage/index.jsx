@@ -11,6 +11,7 @@ const IndexMainPage = () => {
     const [characterBybusqueda, setCharacterByBusqueda] = useState([]);
     const [errorByGetCharacterBInputSearch, setErrorByGetCharacterBInputSearch] = useState(false);
     const [isSearching, setIsSearching ] = useState(false);
+    const[tellMeError,SetTellMeError] = useState("");
     const observer = useRef();
     const {
         characters,
@@ -51,6 +52,7 @@ const IndexMainPage = () => {
                 setCharacterByBusqueda={setCharacterByBusqueda}
                 setErrorByGetCharacterBInputSearch={setErrorByGetCharacterBInputSearch}
                 setIsSearching={setIsSearching}
+                SetTellMeError={SetTellMeError}
                 />
             </nav>
             <div 
@@ -99,7 +101,7 @@ const IndexMainPage = () => {
                     </div>
                 )}
                 <div>{isError && 'error'}</div>
-                <div>{errorByGetCharacterBInputSearch && 'error'}</div>
+                <div>{errorByGetCharacterBInputSearch && `error: ${tellMeError}`}</div>
                 <div>{hasMore && 'error'}</div>
 
 

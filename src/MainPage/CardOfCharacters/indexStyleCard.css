@@ -3,7 +3,7 @@
     width: 400px;
     height: 170px;
     border-radius: 5px;
-    background-color: green;
+    background-color: rgb(78, 164, 235);
 }
 .picture{
     width: 170px;
@@ -22,3 +22,14 @@
     cursor: pointer;
 }
 
+.Card-ContainerisDead{
+    display: flex;
+    width: 400px;
+    height: 170px;
+    border-radius: 5px;
+    background-color: rgb(103, 107, 103);
+}
+.statusisDead{
+    color: rgb(131, 123, 123);
+    font-weight: bold;
+}
